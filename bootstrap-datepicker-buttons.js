@@ -1,5 +1,5 @@
 /* =========================================================
- * bootstrap-datepicker-buttons.js v.1.0.1
+ * bootstrap-datepicker-buttons.js v.1.0.2
  * =========================================================
  * Repo: https://github.com/rogeroliveira84/bootstrap-datepicker-buttons
  * Demo: http://rogeroliveira84.github.io/bootstrap-datepicker-buttons/
@@ -23,7 +23,12 @@
             colour: 'green',
             dateformat: $(this).data().dateFormat.toUpperCase(),
             fromdateid: $(this).data().datepicker.inputs[0].id,
-            todateid: $(this).data().datepicker.inputs[1].id
+            todateid: $(this).data().datepicker.inputs[1].id,
+            today: true,
+            yesterday: true,
+            thisweek: true,
+            last7days: true,
+            last30days: true
         }, options);
 
         return this.each(function () {
@@ -40,12 +45,11 @@
             // Add buttons
             dateRangeInput.before("<div class='datepicker-buttons pull-right'>");
             var dateRangeButtons = dateRangeInput.prev('.datepicker-buttons');
-            dateRangeButtons
-                    .append("<a date-range='Last30Days' class='badge bg-" + colours[0] + "'> Last 30 Days </a> ")
-                    .append("<a date-range='Last7Days' class='badge bg-" + colours[1] + "'> Last 7 Days </a> ")
-                    .append("<a date-range='ThisWeek' class='badge bg-" + colours[2] + "'> This Week </a> ")
-                    .append("<a date-range='Yesterday' class='badge bg-" + colours[3] + "'> Yesterday </a></div> ")
-                    .append("<a date-range='Today' class='badge bg-" + colours[4] + "'> Today </a></div>");
+            if (settings.last30days) { dateRangeButtons.append("<a date-range='Last30Days' class='badge bg-" + colours[0] + "'> Last 30 Days </a> "); }
+            if (settings.last7days)  { dateRangeButtons.append("<a date-range='Last7Days' class='badge bg-" + colours[1] + "'> Last 7 Days </a> "); }
+            if (settings.thisweek)   { dateRangeButtons.append("<a date-range='ThisWeek' class='badge bg-" + colours[2] + "'> This Week </a> "); }
+            if (settings.yesterday)  { dateRangeButtons.append("<a date-range='Yesterday' class='badge bg-" + colours[3] + "'> Yesterday </a></div> "); }
+            if (settings.today)      { dateRangeButtons.append("<a date-range='Today' class='badge bg-" + colours[4] + "'> Today </a></div>"); }
 
             // Buttons click event
             dateRangeButtons.children('a').click(function (e) {
@@ -82,6 +86,7 @@
                 }
 
                 fromDateInput.datepicker('update');
+                toDateInput.datepicker('update');
             });
 
         });
