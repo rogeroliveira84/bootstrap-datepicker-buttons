@@ -4,7 +4,7 @@
  * Repo: https://github.com/rogeroliveira84/bootstrap-datepicker-buttons
  * Demo: http://rogeroliveira84.github.io/bootstrap-datepicker-buttons/
  * =========================================================
- * Started by Roger Oliveira
+ * Started by Roger Oliveir
  *
  * Dependencies:
  *
@@ -85,8 +85,8 @@
                         break;
                 }
 
-                fromDateInput.datepicker('update');
-                toDateInput.datepicker('update');
+                fromDateInput.datepicker('update', fromDateInput.val());
+                toDateInput.datepicker('update', toDateInput.val());
             });
 
         });
