@@ -1,10 +1,10 @@
 /* =========================================================
- * bootstrap-datepicker-buttons.js v.1.0.2
+ * bootstrap-datepicker-buttons.js v.1.0.3
  * =========================================================
  * Repo: https://github.com/rogeroliveira84/bootstrap-datepicker-buttons
  * Demo: http://rogeroliveira84.github.io/bootstrap-datepicker-buttons/
  * =========================================================
- * Started by Roger Oliveir
+ * Started by Roger Oliveira
  *
  * Dependencies:
  *
@@ -27,6 +27,7 @@
             today: true,
             yesterday: true,
             thisweek: true,
+            thismonth: true,
             last7days: true,
             last30days: true
         }, options);
@@ -39,17 +40,18 @@
 
             // Buttons colours
             var colours = settings.colourfull ?
-                ['red', 'green', 'yellow', 'blue', 'purple'] :
+                ['green', 'yellow', 'red', 'blue', 'purple', 'yellow-gold'] :
                 [settings.colour, settings.colour, settings.colour, settings.colour, settings.colour];
 
             // Add buttons
             dateRangeInput.before("<div class='datepicker-buttons pull-right'>");
             var dateRangeButtons = dateRangeInput.prev('.datepicker-buttons');
             if (settings.last30days) { dateRangeButtons.append("<a date-range='Last30Days' class='badge bg-" + colours[0] + "'> Last 30 Days </a> "); }
-            if (settings.last7days)  { dateRangeButtons.append("<a date-range='Last7Days' class='badge bg-" + colours[1] + "'> Last 7 Days </a> "); }
-            if (settings.thisweek)   { dateRangeButtons.append("<a date-range='ThisWeek' class='badge bg-" + colours[2] + "'> This Week </a> "); }
-            if (settings.yesterday)  { dateRangeButtons.append("<a date-range='Yesterday' class='badge bg-" + colours[3] + "'> Yesterday </a></div> "); }
-            if (settings.today)      { dateRangeButtons.append("<a date-range='Today' class='badge bg-" + colours[4] + "'> Today </a></div>"); }
+            if (settings.last7days) { dateRangeButtons.append("<a date-range='Last7Days' class='badge bg-" + colours[1] + "'> Last 7 Days </a> "); }
+            if (settings.thismonth) { dateRangeButtons.append("<a date-range='ThisMonth' class='badge bg-" + colours[2] + "'> This Month </a> "); }
+            if (settings.thisweek)   { dateRangeButtons.append("<a date-range='ThisWeek' class='badge bg-" + colours[3] + "'> This Week </a> "); }
+            if (settings.yesterday)  { dateRangeButtons.append("<a date-range='Yesterday' class='badge bg-" + colours[4] + "'> Yesterday </a></div> "); }
+            if (settings.today)      { dateRangeButtons.append("<a date-range='Today' class='badge bg-" + colours[5] + "'> Today </a></div>"); }
 
             // Buttons click event
             dateRangeButtons.children('a').click(function (e) {
@@ -58,6 +60,7 @@
                 var today = moment().format(settings.dateformat);
                 var yesterday = moment().subtract(1, 'days').format(settings.dateformat);
                 var thisWeek = moment().isoWeekday(1).format(settings.dateformat);
+                var thisMonth = moment().startOf('month').format(settings.dateformat);
                 var last7Days = moment().subtract(6, 'days').format(settings.dateformat);
                 var last30Days = moment().subtract(29, 'days').format(settings.dateformat);
 
@@ -73,6 +76,10 @@
                         break;
                     case "ThisWeek":
                         fromDateInput.val(thisWeek);
+                        toDateInput.val(today);
+                        break;
+                    case "ThisMonth":
+                        fromDateInput.val(thisMonth);
                         toDateInput.val(today);
                         break;
                     case "Last7Days":
