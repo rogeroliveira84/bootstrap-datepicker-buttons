@@ -1,5 +1,5 @@
 # bootstrap-datepicker-buttons
-JQuery Plugin to extend the Bootstrap-datepicker with buttons to select dates
+A jQuery Plugin to extend the Bootstrap-datepicker with buttons to select dates
 
 ![alt tag](https://github.com/rogeroliveira84/bootstrap-datepicker-buttons/blob/master/buttons.png?raw=true)
 
